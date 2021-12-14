@@ -1,0 +1,41 @@
+import {scaleSizeW, setSpText} from '@/utils/index';
+import MyStyleSheet from './CustomStyleSheet';
+
+export const customStyles = MyStyleSheet.create({
+    text:{
+        color:'#333',
+        fontSize:14
+    },
+    fileText:{
+        color:'#3c85ff',
+        fontSize:14
+    },
+    headerRightText:{
+        color:'#3c85ff',
+        fontSize:14,
+        paddingRight:12
+    },
+    error:{
+        fontSize:12,
+        color:'red',
+        position:'absolute',
+    },
+    inputContainerStyle:{
+        width: 295,
+height: 46,
+borderWidth:1,
+borderColor:'#ADB5BD',
+borderRadius: 4,
+borderStyle:'solid'
+    },
+    pageTitleStyle: {
+        fontWeight: '500',
+        fontSize:18,
+        color: '#333',
+      },
+      inputMStyle:{
+        width: '80%',
+        height: 46,
+        color:'#333'
+      }
+});
