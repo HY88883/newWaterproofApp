@@ -73,7 +73,7 @@ const MemberManagement = props => {
       type: 'team/getTeamMemberPage',
       payload: {
         current: 1,
-        size: 100,
+        size: 999,
         deptId: userRef.current.deptId,
       },
     });
@@ -113,7 +113,7 @@ function handleSearch(text){
     type: 'team/getTeamMemberPage',
     payload: {
       current: 1,
-      size: 100,
+      size: 999,
       deptId: userRef.current.deptId,
       userName:text
     },

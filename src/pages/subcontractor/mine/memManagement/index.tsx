@@ -1,5 +1,5 @@
 import useUserObject from '@/components/hooks/useUserObject';
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view';
@@ -9,11 +9,13 @@ import {getCurrentUser} from '@/config/authority';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
 import Config from 'react-native-config';
 import Touchable from '@/components/Touchable/Touchable';
+import Search from 'react-native-search-box';
 
 const MemManagement = props => {
   const {navigation} = props;
   const dispatch = useDispatch();
   const userRef = useRef(null);
+  const [textContent,setTextContent]=useState('');
 
   const {
     team: {
@@ -61,7 +63,7 @@ const MemManagement = props => {
       type: 'team/getTeamMemberPage',
       payload: {
         current: 1,
-        size: 100,
+        size: 999,
         subcontractorId: userRef.current.deptId,
       },
     });
@@ -95,8 +97,37 @@ const MemManagement = props => {
     );
   };
 
+  function handleSearch(text){
+    setTextContent(text);
+    dispatch({
+      type: 'team/getTeamMemberPage',
+      payload: {
+        current: 1,
+        size: 999,
+        subcontractorId: userRef.current.deptId,
+        userName:text
+      },
+    });
+  }
+  
   return (
     <View style={styles.container}>
+       <Search
+           backgroundColor={'#fff'}
+           placeholderTextColor={'#999'}
+           titleCancelColor={'blue'}
+           placeholder={'请输入成员姓名'}
+           returnType={'search'}
+           inputStyle={{fontSize:px2dp(15),color:'#333'}}
+           cancelTitle={'取消'}
+           onChangeText={t=>handleSearch(t)}
+           onSearch={t=>{
+             handleSearch(t);
+           }}
+           onCancel={_=>handleSearch('')}
+           onDelete={_=>handleSearch('')}
+           value={textContent}
+        />
       <SectionListContacts
           scrollAnimation
         // ref={s=>this.sectionList=s}
@@ -126,7 +157,7 @@ const styles = MyStyleSheet.create({
     color: '#898989',
   },
   iview: {
-    height: px2dp(62),
+    height:62,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',

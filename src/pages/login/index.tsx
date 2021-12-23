@@ -56,7 +56,7 @@ const Login = (props) => {
             <Controller
                 control={control}
                 name="username"
-                defaultValue={'hr'}
+                defaultValue={'boss'}
                 rules={{
               required: '请输入手机号码'
             }}
@@ -73,7 +73,7 @@ const Login = (props) => {
            <Controller
                control={control}
                name="password"
-               defaultValue={'hr'}
+               defaultValue={'boss'}
                rules={{
               required: '请输入密码'
             }}

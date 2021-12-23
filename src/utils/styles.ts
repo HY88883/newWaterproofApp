@@ -6,6 +6,10 @@ export const customStyles = MyStyleSheet.create({
         color:'#333',
         fontSize:14
     },
+    textShow:{
+        color:'#000',
+        fontSize:18
+    },
     fileText:{
         color:'#3c85ff',
         fontSize:14
@@ -41,5 +45,31 @@ color:'#333'
         fontSize:19,
         padding:0,
         margin:0
-      }
+      },
+      inputProjectStyle:{
+        width: '60%',
+        // height: 30,
+        color:'#333',
+        fontSize:14,
+        padding:0,
+        margin:0,
+        marginLeft:28
+      },
+      inputDStyle:{
+        width: 200,
+        height: 30,
+        color:'#333',
+        fontSize:19,
+        padding:0,
+        margin:0,
+        textAlign: 'right'
+      },
+      inputSStyle:{
+        width: '80%',
+        // height: 30,
+        color:'#333',
+        fontSize:16,
+        padding:0,
+        margin:0
+      },
 });

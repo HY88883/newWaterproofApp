@@ -212,7 +212,6 @@ const formdata=useRef(null);
       },
       async response => {
         if (response.assets) {
-          console.log(response);
           const formData = new FormData();
           const imgObj = {
             uri: response.assets[0].uri,
@@ -288,7 +287,6 @@ const formdata=useRef(null);
     const res = await upload(formData);
     if (res.success) {
       Toast.success('上传成功');
-      console.log(res);
       let newFileList = [...uploadFileList, res.data];
         setUploadFileList(newFileList);
     } else {
@@ -297,7 +295,6 @@ const formdata=useRef(null);
   };
 
   const handleOperation = (ref,index) => {
-    // console.log(ref,index)
     ref.measureInWindow((x, y, width, height) => {
       // console.log(x, y, width, height);
       y=y+scaleSizeH(30);

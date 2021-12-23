@@ -26,7 +26,6 @@ const ConstructionTeamBottomTabs = (props) => {
     
     const lastBackPressed=useRef('');
     // const routesContent = useNavigationState(state => state.routes);
-    console.log('routesContent',navigation);
     useEffect(() =>{
       if (Platform.OS === 'android'){
         BackHandler.addEventListener('hardwareBackPress', onBackAndroid);

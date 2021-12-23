@@ -4,6 +4,7 @@ import storage, {load} from '@/config/storage';
 import axios from 'axios';
 import {selectDeptUser} from '@/service/user';
 import {detail, page} from '@/service/materialApplication';
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view';
 
 const initialState = {
   materialApplicationList: {
@@ -34,6 +35,7 @@ const initialState = {
     updatedBy: '',
     userId: 0,
   },
+  refreshState:1
 };
 
 //物料申请
@@ -47,28 +49,70 @@ const materialApplication = {
         ...payload,
       };
     },
+    setMoreList(state,{payload}){
+      return {
+        ...state,
+        materialApplicationList:{
+          list:state.materialApplicationList.list.concat(payload.materialApplicationList.list),
+          pagination:payload.materialApplicationList.pagination
+        },
+        refreshState:payload.refreshState
+      };
+    }
   },
   effects: {
     //物料申请分页
     *page({payload, callback}, {call, put}) {
+      yield put({
+        type:'setState',
+        payload:{
+          refreshState: payload.hasMore?RefreshState.FooterRefreshing:RefreshState.HeaderRefreshing
+        }
+      });
       const response = yield call(page, payload);
       if (typeof callback === 'function') {
         callback(response);
       }
       if (response.success) {
-        yield put({
-          type: 'setState',
-          payload: {
-            materialApplicationList: {
-              list: response.data.records,
-              pagination: {
-                total: response.data.total,
-                current: response.data.current,
-                pageSize: response.data.size,
-                pages: response.data.pages,
+        if(payload.hasMore){
+          yield put({
+            type: 'setMoreList',
+            payload: {
+              materialApplicationList: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
               },
+            refreshState: response.data.current*response.data.size >=response.data.total ? RefreshState.NoMoreData  : RefreshState.Idle
             },
-          },
+          });
+        }else{
+          yield put({
+            type: 'setState',
+            payload: {
+              materialApplicationList: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
+              },
+                 refreshState: response.data.total < 1 ? RefreshState.EmptyData : RefreshState.Idle
+            },
+          });
+        }
+      }else{
+        yield put({
+          type:'setState',
+          payload:{
+            refreshState: RefreshState.Failure
+          }
         });
       }
     },
@@ -91,7 +135,7 @@ const materialApplication = {
         payload: {
           materialApplicationDetail: initialState.materialApplicationDetail
         },
-      })
+      });
     }
   },
 };

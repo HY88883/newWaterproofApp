@@ -34,6 +34,7 @@ const initialState = {
     updateTime: '',
     updateUser: 0,
   },
+  refreshState:1
 };
 
 //项目管理

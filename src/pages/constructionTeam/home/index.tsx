@@ -43,7 +43,8 @@ const userRef=useRef({});
     dispatch({
       type: 'constructionRecord/page',
       payload: {
-        size: 99,
+        size: 10,
+        current:1,
         teamId: user.deptId,
         date:Func.dateFormat('YYYY-MM-DD',new Date())
       }
@@ -72,10 +73,10 @@ else return styles.rShangVeiew;
 
   function handleOnPress(i){
     switch (i) {
-      // case 0:navigation.navigate('MaterialRequisition');break;
-      // case 1:navigation.navigate('ExpenseReimbursement');break;
+      case 0:navigation.navigate('MaterialRequisition');break;
+      case 1:navigation.navigate('ExpenseReimbursement');break;
       case 2:navigation.navigate('ConstructionRecordList');break;
-      // case 3:navigation.navigate('MaterialSign');break;
+      case 3:navigation.navigate('MaterialSign');break;
   }
   }
 
@@ -139,9 +140,17 @@ else return styles.rShangVeiew;
               <Text style={styles.lei}>{item.title}</Text>
               <View style={styles.bView}>
                 <View/>
-                <View style={showStyle(item.title)}>
+                <Touchable style={showStyle(item.title)} onPress={()=>{
+                  if(item.title==='添加上工'&&showInfo(item.title)==='上工'){
+                        navigation.navigate('BeginWorkingForm',{getConstructionSummary});
+                  }else{
+                    navigation.navigate('CancleWork',{workRecordId:ConstructionSummary.workRecordId,
+                      getConstructionSummary
+                    });
+                  }
+                }}>
                   <Text style={item.title.indexOf('添加')!==-1?styles.shang:styles.infox}>{showInfo(item.title)}</Text>
-                </View>
+                </Touchable>
               </View>
             </View>
           ))

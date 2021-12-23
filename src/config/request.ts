@@ -186,7 +186,7 @@ export default function request<T>(url: string, option?: any): Promise<IResponse
       }
       if (response.success !== undefined && response.success === true) {
         console.info('URL:' + reUrl);
-        console.log(response.data);
+        // console.log(response.data);
         // console.info('newOptions:' + JSON.stringify(newOptions));
       }
       return response;

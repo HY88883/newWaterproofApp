@@ -15,9 +15,10 @@ const TeamMine = (props) => {
  const handleAffairs=(index)=>{
     switch (index) {
         case 0:navigation.navigate('MemberManagement');break;
-        case 1:navigation.navigate('ConstructionTeamManagement');break;
-        case 2:navigation.navigate('MemManagement');break;
-        // case 3:navigation.navigate('DeviceManagement');break;
+        case 1:navigation.navigate('DeviceManagement');break;
+        case 2:navigation.navigate('AttendanceRecord');break;
+        case 3:navigation.navigate('ProjectManagement');break;
+        case 4:navigation.navigate('MaterialStockList');break;
         case 5:handleLoginout();break;
     }
 };

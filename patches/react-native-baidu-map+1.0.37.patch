@@ -1,0 +1,35 @@
+diff --git a/node_modules/react-native-baidu-map/android/build.gradle b/node_modules/react-native-baidu-map/android/build.gradle
+index aec96cc..4642712 100644
+--- a/node_modules/react-native-baidu-map/android/build.gradle
++++ b/node_modules/react-native-baidu-map/android/build.gradle
+@@ -9,9 +9,7 @@ buildscript {
+         mavenLocal()
+         google()
+         jcenter()
+-        maven() {
+-            url 'http://repo.lovebing.net/repository/maven-public/'
+-        }
++        mavenCentral()
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:3.3.0'
+@@ -22,9 +20,7 @@ repositories {
+     mavenLocal()
+     google()
+     jcenter()
+-    maven {
+-        url 'http://repo.lovebing.net/repository/maven-public/'
+-    }
++    mavenCentral()
+ }
+ 
+ android {
+@@ -51,7 +47,7 @@ android {
+ }
+ 
+ dependencies {
+-    compileOnly 'com.facebook.react:react-native:0.62.2'
++    compileOnly 'com.facebook.react:react-native:+'
+     implementation files('libs/BaiduLBS_Android.jar')
+     compileOnly files('src/main/assets')
+ }

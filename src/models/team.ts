@@ -206,23 +206,24 @@ const initialState = {
   },
   attendanceTimeDetail:[
     {
-      "beginTime": {
-        "hour": 0,
-        "minute": 0,
-        "nano": 0,
-        "second": 0
+      'beginTime': {
+        'hour': 0,
+        'minute': 0,
+        'nano': 0,
+        'second': 0
       },
-      "duration": 0,
-      "endTime": {
-        "hour": 0,
-        "minute": 0,
-        "nano": 0,
-        "second": 0
+      'duration': 0,
+      'endTime': {
+        'hour': 0,
+        'minute': 0,
+        'nano': 0,
+        'second': 0
       },
-      "id": 0,
-      "workingShift": ""
+      'id': 0,
+      'workingShift': ''
     }
-  ]
+  ],
+  refreshState:1
 };
 
 //施工队管理
@@ -242,6 +243,16 @@ const team = {
         ConstructionTeamManagement:{
           list:state.ConstructionTeamManagement.list.concat(payload.ConstructionTeamManagement.list),
           pagination:payload.ConstructionTeamManagement.pagination
+        },
+        refreshState:payload.refreshState
+      };
+    },
+    setAuditList(state,{payload}){
+      return {
+        ...state,
+        toAuditTeamMemberPage:{
+          list:state.toAuditTeamMemberPage.list.concat(payload.toAuditTeamMemberPage.list),
+          pagination:payload.toAuditTeamMemberPage.pagination
         },
         refreshState:payload.refreshState
       };
@@ -341,7 +352,7 @@ const team = {
     },
     //获取施工队下拉列表
     *list({payload}, {call, put}) {
-      yield put({type:'clearDeviceAdd',})
+      yield put({type:'clearDeviceAdd',});
       const response = yield call(list, payload);
       if (response.success) {
         yield put({
@@ -358,7 +369,7 @@ const team = {
     *teamMemberDetail({payload,callback} , {call, put}) {
       const response = yield call(teamMemberDetail, payload);
       if(typeof callback==='function'){
-        callback(response)
+        callback(response);
       }
       if (response.success) {
         yield put({
@@ -394,24 +405,56 @@ const team = {
     },
     //获取待审核施工队成员列表
     *getToAuditTeamMemberPage({payload, callback}, {call, put}) {
+      yield put({
+        type:'setState',
+        payload:{
+          refreshState: payload.hasMore?RefreshState.FooterRefreshing:RefreshState.HeaderRefreshing
+        }
+      });
       const response = yield call(getToAuditTeamMemberPage, payload);
       if (typeof callback === 'function') {
         callback(response);
       }
       if (response.success) {
-        yield put({
-          type: 'setState',
-          payload: {
-            toAuditTeamMemberPage: {
-              list: response.data.records,
-              pagination: {
-                total: response.data.total,
-                current: response.data.current,
-                pageSize: response.data.size,
-                pages: response.data.pages,
+        if(payload.hasMore) {
+          yield put({
+            type: 'setAuditList',
+            payload: {
+              toAuditTeamMemberPage: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
               },
+            refreshState: response.data.current*response.data.size >=response.data.total ? RefreshState.NoMoreData  : RefreshState.Idle
             },
-          },
+          });
+        }else{
+          yield put({
+            type: 'setState',
+            payload: {
+              toAuditTeamMemberPage: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
+              },
+          refreshState: response.data.total < 1 ? RefreshState.EmptyData : RefreshState.Idle
+            },
+          });
+        }
+      }else{
+        yield put({
+          type:'setState',
+          payload:{
+            refreshState: RefreshState.Failure
+          }
         });
       }
     },
@@ -481,7 +524,7 @@ const team = {
           payload:{
             attendanceTimeDetail:response.data
           }
-        })
+        });
       }
    },
     *clearAttendanceRecordDetail(_,{put}){
@@ -490,10 +533,10 @@ const team = {
         payload:{
           attendanceTimeDetail:[]
         }
-      })
+      });
     },
     *clearDeviceAdd(_,{put}){
-      console.log('clearDeviceAdd')
+      console.log('clearDeviceAdd');
       yield put({
         type:'setState',
         payload:{
@@ -502,7 +545,7 @@ const team = {
           },
           getTeamMemberPage: initialState.getTeamMemberPage,
         }
-      })
+      });
     },
   },
 };

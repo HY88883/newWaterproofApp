@@ -194,7 +194,6 @@ let a={};
             }
 
         });
-        console.log(list);
     }
 
     render() {

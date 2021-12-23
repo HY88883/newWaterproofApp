@@ -6,6 +6,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
+import Func from '@/utils/Func';
 
 const ProjectManagement = (props) => {
     const {navigation}=props;
@@ -18,7 +19,25 @@ const ProjectManagement = (props) => {
         projectManage:state.projectManage
       }));
         
+    const setOpts = () => {
+        navigation.setOptions({
+            headerRight:()=>
+                <Touchable
+                    onPress={()=>{
+                      navigation.navigate('AddProject');
+                    }}
+                >
+                    <View style={{flexDirection:'row',alignItems: 'center'}}>
+                        <Text style={{color:'#333'}}>添加</Text>
+                    </View></Touchable>
+        });
+    };
+
+
         useEffect(()=>{
+          if(Func.ifubcontractor){
+            setOpts();
+        }
             onHeaderRefresh();
             return ()=>{
                 dispatch({

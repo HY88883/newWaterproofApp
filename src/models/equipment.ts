@@ -5,6 +5,7 @@ import axios from 'axios';
 import {selectDeptUser} from '@/service/user';
 import {detail, page} from '@/service/equipment';
 import {dict} from '@/service/dictbiz';
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view';
 
 const initialState = {
   equipmentList: {
@@ -78,7 +79,8 @@ const initialState = {
     updatedBy: '',
     warrantyPeriod: '',
   },
-  equipmentInit:{classificationInit:[]}
+  equipmentInit:{classificationInit:[]},
+  refreshState:1
 };
 
 //设备管理详情
@@ -92,28 +94,71 @@ const equipment = {
         ...payload,
       };
     },
+    setMoreList(state,{payload}){
+      return {
+        ...state,
+        equipmentList:{
+          list:state.equipmentList.list.concat(payload.equipmentList.list),
+          pagination:payload.equipmentList.pagination
+        },
+        refreshState:payload.refreshState
+      };
+    }
   },
   effects: {
     //设备管理分页
     *page({payload, callback}, {call, put}) {
+      yield put({
+        type:'setState',
+        payload:{
+          refreshState: payload.hasMore?RefreshState.FooterRefreshing:RefreshState.HeaderRefreshing
+        }
+      });
       const response = yield call(page, payload);
       if (typeof callback === 'function') {
         callback(response);
       }
       if (response.success) {
-        yield put({
-          type: 'setState',
-          payload: {
-            equipmentList: {
-              list: response.data.records,
-              pagination: {
-                total: response.data.total,
-                current: response.data.current,
-                pageSize: response.data.size,
-                pages: response.data.pages,
+        if(payload.hasMore){
+          yield put({
+            type: 'setMoreList',
+            payload: {
+              equipmentList: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
               },
+            refreshState: response.data.current*response.data.size >=response.data.total ? RefreshState.NoMoreData  : RefreshState.Idle
             },
-          },
+          });
+        }else{
+          yield put({
+            type: 'setState',
+            payload: {
+              equipmentList: {
+                list: response.data.records,
+                pagination: {
+                  total: response.data.total,
+                  current: response.data.current,
+                  pageSize: response.data.size,
+                  pages: response.data.pages,
+                },
+              },
+          refreshState: response.data.total < 1 ? RefreshState.EmptyData : RefreshState.Idle
+            },
+          });
+        }
+       
+      }else{
+        yield put({
+          type:'setState',
+          payload:{
+            refreshState: RefreshState.Failure
+          }
         });
       }
     },
