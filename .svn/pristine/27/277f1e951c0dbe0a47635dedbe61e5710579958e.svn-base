@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高德地图</title>
+    <style>
+     html,
+      body,
+      #container {
+        width: 100%;
+        height: 100%;
+        /* overflow:scroll; */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin: 0;
+        padding:0;
+      }
+      html::-webkit-scrollbar{
+        display:none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=af4503155f02aceb076cff16d94ed6e6"></script>
+
+    <script type="text/javascript">
+
+        var map = new AMap.Map('container', {
+          resizeEnable: true, //是否监控地图容器尺寸变化
+          zoom: 11, //初始化地图层级
+          showIndoorMap:false
+          // center: [104.397428, 56.90923], //初始化地图中心点
+        });
+
+      window.onload = function () {
+
+        function getCurrentPosition() {
+          AMap.plugin('AMap.Geolocation', function () {
+            var geolocation = new AMap.Geolocation({
+              enableHighAccuracy: true, //是否使用高精度定位，默认:true
+              timeout: 10000, //超过10秒后停止定位，默认：5s
+              buttonPosition: 'RB', //定位按钮的停靠位置
+              buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+              zoomToAccuracy: true, //定位成功后是否自动调整地图视野到定位点
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition(function (status, result) {
+              if (status == 'complete') {
+                onComplete(result);
+              } else {
+                onError(result);
+              }
+            });
+          });
+          //解析定位结果
+          function onComplete(data) {
+            window.ReactNativeWebView.postMessage(JSON.stringify(data))
+          }
+          //解析定位错误信息
+          function onError(data) {}
+        }
+
+        window.listenMapPan = function (msg) {
+        // alert(JSON.stringify(msg))
+        map.panTo(new AMap.LngLat(Number(msg.a),Number(msg.b)))
+      }
+
+      };
+    
+    </script>
+
+
+  </body>
+</html>

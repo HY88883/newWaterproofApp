@@ -1,0 +1,169 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.newwaterproofapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\debug\AndroidManifest.xml:5:22-75
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:5:1-75
+12-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:5:18-72
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:7:1-63
+13-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:7:18-60
+14    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+14-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:9:1-71
+14-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:9:18-68
+15    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+15-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:11:1-81
+15-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:11:18-78
+16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+16-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:13:1-72
+16-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:13:18-69
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:15:1-77
+17-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:15:18-74
+18    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+18-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:17:1-69
+18-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:17:18-66
+19    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+19-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:19:1-77
+19-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:19:18-74
+20    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+20-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:21:1-75
+20-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:21:18-72
+21    <uses-permission android:name="android.permission.CAMERA" />
+21-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:23:1-61
+21-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:23:18-58
+22    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+22-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:25:1-64
+22-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:25:18-61
+23    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+23-->[com.google.android.gms:play-services-iid:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\360b174c6295783246ac49d5c6b3bb69\transformed\jetified-play-services-iid-17.0.0\AndroidManifest.xml:23:5-82
+23-->[com.google.android.gms:play-services-iid:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\360b174c6295783246ac49d5c6b3bb69\transformed\jetified-play-services-iid-17.0.0\AndroidManifest.xml:23:22-79
+24    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+24-->[com.android.installreferrer:installreferrer:1.1.2] C:\Users\hy\.gradle\caches\transforms-3\b405000ed9df6c4334c2e19438ddd7f0\transformed\jetified-installreferrer-1.1.2\AndroidManifest.xml:9:5-110
+24-->[com.android.installreferrer:installreferrer:1.1.2] C:\Users\hy\.gradle\caches\transforms-3\b405000ed9df6c4334c2e19438ddd7f0\transformed\jetified-installreferrer-1.1.2\AndroidManifest.xml:9:22-107
+25
+26    <application
+26-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:27:5-45:19
+27        android:name="com.newwaterproofapp.MainApplication"
+27-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:28:7-38
+28        android:allowBackup="false"
+28-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:32:7-34
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.6.0] C:\Users\hy\.gradle\caches\transforms-3\5efa136d6b7a2c594211658eacead3c1\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+30        android:debuggable="true"
+31        android:icon="@mipmap/ic_launcher"
+31-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:30:7-41
+32        android:label="@string/app_name"
+32-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:29:7-39
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:31:7-52
+34        android:theme="@style/AppTheme"
+34-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:33:7-38
+35        android:usesCleartextTraffic="true" >
+35-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\debug\AndroidManifest.xml:8:9-44
+36        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+36-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\debug\AndroidManifest.xml:11:9-86
+36-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\debug\AndroidManifest.xml:11:19-83
+37        <activity
+37-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:34:7-44:18
+38            android:name="com.newwaterproofapp.MainActivity"
+38-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:35:9-37
+39            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+39-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:37:9-86
+40            android:label="@string/app_name"
+40-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:36:9-41
+41            android:launchMode="singleTask"
+41-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:38:9-40
+42            android:windowSoftInputMode="adjustResize" >
+42-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:39:9-51
+43            <intent-filter>
+43-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:40:9-43:25
+44                <action android:name="android.intent.action.MAIN" />
+44-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:41:13-65
+44-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:41:21-62
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:42:13-73
+46-->D:\working_workspace\waterproof_project\6.code\newWaterproofApp\android\app\src\main\AndroidManifest.xml:42:23-70
+47            </intent-filter>
+48        </activity>
+49
+50        <provider
+50-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+51            android:name="androidx.core.content.FileProvider"
+51-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-62
+52            android:authorities="com.newwaterproofapp.RnDocumentOpenerProvider"
+52-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-76
+53            android:exported="false"
+53-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+54            android:grantUriPermissions="true" >
+54-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+55            <meta-data
+55-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:58
+56                android:name="android.support.FILE_PROVIDER_PATHS"
+56-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+57                android:resource="@xml/provider_paths" />
+57-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-55
+58        </provider>
+59        <provider
+59-->[:react-native-image-picker] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+60            android:name="com.imagepicker.ImagePickerProvider"
+60-->[:react-native-image-picker] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-63
+61            android:authorities="com.newwaterproofapp.imagepickerprovider"
+61-->[:react-native-image-picker] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-71
+62            android:exported="false"
+62-->[:react-native-image-picker] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+63            android:grantUriPermissions="true" >
+63-->[:react-native-image-picker] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+64            <meta-data
+64-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:58
+65                android:name="android.support.FILE_PROVIDER_PATHS"
+65-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+66                android:resource="@xml/imagepicker_provider_paths" />
+66-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-55
+67        </provider>
+68        <provider
+68-->[:react-native-webview] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-webview\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+69            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
+69-->[:react-native-webview] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-webview\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-83
+70            android:authorities="com.newwaterproofapp.fileprovider"
+70-->[:react-native-webview] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-webview\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-64
+71            android:exported="false"
+71-->[:react-native-webview] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-webview\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+72            android:grantUriPermissions="true" >
+72-->[:react-native-webview] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-webview\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+73            <meta-data
+73-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:58
+74                android:name="android.support.FILE_PROVIDER_PATHS"
+74-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+75                android:resource="@xml/file_provider_paths" />
+75-->[:react-native-document-opener] D:\working_workspace\waterproof_project\6.code\newWaterproofApp\node_modules\react-native-document-opener\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-55
+76        </provider>
+77
+78        <activity
+78-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\f9416fc8ef0abf24a2b460f401d0051a\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+79            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+79-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\f9416fc8ef0abf24a2b460f401d0051a\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+80            android:exported="false"
+80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\f9416fc8ef0abf24a2b460f401d0051a\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+81            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\f9416fc8ef0abf24a2b460f401d0051a\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+82
+83        <meta-data
+83-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\b0526a1dc337b9c7a190ce38007e5e31\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+84            android:name="com.google.android.gms.version"
+84-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\b0526a1dc337b9c7a190ce38007e5e31\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+85            android:value="@integer/google_play_services_version" />
+85-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hy\.gradle\caches\transforms-3\b0526a1dc337b9c7a190ce38007e5e31\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+86    </application>
+87
+88</manifest>

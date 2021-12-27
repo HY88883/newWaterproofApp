@@ -33,6 +33,10 @@ import {
 import WebView from 'react-native-webview';
 import {useDispatch, useSelector} from 'react-redux';
 import {Select} from 'teaset';
+import { viewportWidth } from '@/utils/';
+import { submit } from '@/service/projectManage';
+import OverlayLoading from '@/components/OverlayLoading';
+import { getCurrentUser } from '@/config/authority';
 
 const AddProject = props => {
   const {navigation} = props;
@@ -73,36 +77,25 @@ const AddProject = props => {
   const [constructItem, setConstructItem] = useState({});
   const [iconStyle, setIconStyle] = useState({});
   const {control, handleSubmit, reset, getValues} = useForm();
-  const viewRef = useRef(null);
   const dispatch = useDispatch();
   const optionsChange = useRef({
     tableHead: ['部位', '合同面积(m²)'],
     tableData: [],
   });
   const mapRef = useRef(null);
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(null);
   const update = useUpdate();
-  const wrapperPanResponder = useRef(PanResponder.create({
-    onStartShouldSetPanResponder: (e, g) => true,
-    onPanResponderGrant: () => {
-        console.log('wrapperPanResponder===GRANTED TO WRAPPER');
-    },
-    onPanResponderMove: (evt, gestureState) => {
-        console.log('wrapperPanResponder===WRAPPER MOVED');
-    }
-}));
-
+  const materialList=useRef([]);
+  const deptId=useRef('');
+  console.log('location: ' + JSON.stringify(location));
+  
 const viewPanResponder = useRef(PanResponder.create({
-  onStartShouldSetPanResponder: (e, g) => true,
-  onPanResponderGrant: () => {
-      console.log('viewPanResponder====GRANTED TO SCROLLER');
-  },
-  onPanResponderMove: (evt, gestureState) => {
-      console.log('viewPanResponder===SCROLLER MOVED');
-  }
+  onStartShouldSetPanResponderCapture: (e, g) => true,
 }));
 
   useEffect(() => {
+    OverlayLoading.displayLoading('努力获取中');
+  
     dispatch({
       type: 'team/list',
       payload: {},
@@ -113,6 +106,8 @@ const viewPanResponder = useRef(PanResponder.create({
     });
     const fetchData = async () => {
       const response = await selectDeptUser({roleName: '项目经理'});
+      const user = await getCurrentUser();
+      deptId.current = user.deptId;
       if (response.success) {
         let newData = transFormData(response.data);
         setNewData(newData);
@@ -120,6 +115,23 @@ const viewPanResponder = useRef(PanResponder.create({
       }
     };
     fetchData();
+    if(props.route.params){
+      navigation.setOptions({
+        headerTitle:'项目编辑'
+      });
+      reset(props.route.params.ProjectManagementDetail);
+      setConstructItem({id:props.route.params.ProjectManagementDetail.teamId,teamName:props.route.params.ProjectManagementDetail.teamName});
+      const {location,position}=props.route.params.ProjectManagementDetail;
+      let [longitude,latitude] =position.split(',');
+      longitude = Number(longitude);
+      latitude = Number(latitude);
+      const obj={
+        formatted_address:location,
+        addressComponent:{streetNumber:{location:position}}
+      };
+      setLocation(obj);
+    }
+    OverlayLoading.removeLoading();
   }, []);
 
   const transFormData = data => {
@@ -245,18 +257,74 @@ const viewPanResponder = useRef(PanResponder.create({
   };
 
   const _onLoad = syntheticEvent => {
-    const {nativeEvent} = syntheticEvent;
-    console.log('nativeEvent', nativeEvent);
+     setTimeout(() =>{
+      const position=location?.addressComponent.streetNumber.location;
+      if(position){
+        const [a,b]=position.split(',');
+        const obj={a,b};
+        mapRef.current.injectJavaScript(`listenMapPan(${JSON.stringify(obj)});true;`);
+      }
+     },1000);
   };
 
   let source;
   if (Platform.OS === 'ios') {
-    source = require('../../../html/bdMap.html');
+    source = require('../../../html/ProjectMap.html');
   } else if (Platform.OS === 'android') {
     source = {uri: 'file:///android_asset/html/ProjectMap.html'};
   }
 
-  const onFinish = () => {};
+  const transformDetailList = (data) => {
+    for (let i = 0; i < data.length; i++) {
+      let obj = {},
+        dataItem = data[i];
+      for (let j = 0; j < dataItem.length; j++) {
+        if (j == 0) {
+          obj.parts = dataItem[j];
+        } else {
+          obj.contractArea = dataItem[j];
+        }
+      }
+      materialList.current.push(obj);
+    }
+  };
+
+  const onFinish = async (values) => {
+    if (WaterproofFunc.isTableEmpty(tableData)) {
+      Toast.fail('请填写合同面积');
+      return; 
+    }
+    if (Func.isEmptyObject(constructItem)) {
+      Toast.fail('请选择施工队伍');
+      return;
+    }
+    if (!managerId) {
+      Toast.fail('请选择项目经理');
+      return; 
+    }
+    transformDetailList(tableData);
+    const params = {
+      id:props.route.params?props.route.params.ProjectManagementDetail.id:'',
+      projectName: values.projectName,
+      party:values.party,
+      generalContractor:values.generalContractor,
+      materialBrand:values.materialBrand,
+      contractAreaList: materialList.current,
+      teamId: constructItem.id,
+      projectManagerId: managerId,
+      subcontractorId: deptId.current,
+      projectLeader:props.route.params?props.route.params.ProjectManagementDetail.projectLeader:'',
+      location:location.formatted_address,
+      position: location.addressComponent.streetNumber.location
+    };
+    const response = await submit(params);
+    if(response.success){
+      Toast.success('操作成功');
+      navigation.goBack();
+    }else{
+      Toast.fail(response.msg);
+    }
+  };
 
   function onError(errors) {
     if (Object.keys(errors).length > 0) {
@@ -266,7 +334,7 @@ const viewPanResponder = useRef(PanResponder.create({
   }
 
   return (
-    <View style={styles.container} {...wrapperPanResponder.current.panHandlers}>
+    <View style={styles.container}>
       <ScrollView style={{flex: 1, marginHorizontal: px2dp(16)}} >
         <View style={styles.item}>
           <Text style={styles.leftText}>项目名称</Text>
@@ -333,12 +401,17 @@ const viewPanResponder = useRef(PanResponder.create({
 
         <View style={styles.item}>
           <Text style={styles.leftText}>合同面积</Text>
-          <Text onPress={addtableRow} style={{color: '#000'}}>
-            ++++++++++++++
-          </Text>
-          <Text onPress={minustableRow} style={{color: '#000'}}>
-            -----------=====
-          </Text>
+          <Touchable
+              onPress={addtableRow}
+              style={{marginHorizontal:px2dp(8)}}
+          >
+          <IconFont name="jia"/>
+          </Touchable>
+          <Touchable
+              onPress={minustableRow}
+          >
+          <IconFont name="jianshao"/>
+          </Touchable>
         </View>
 
         <Table
@@ -434,19 +507,20 @@ const viewPanResponder = useRef(PanResponder.create({
         </View>
 
         <View
-            {...viewPanResponder.current.panHandlers}
             onLayout={e => {
             if (e.nativeEvent.layout) {
               setIconStyle({
-                top: e.nativeEvent.layout.height / 2 - px2dp(8),
-                left: e.nativeEvent.layout.width / 2,
+                top: e.nativeEvent.layout.height / 2 - px2dp(14),
+                left: e.nativeEvent.layout.width / 2-px2dp(9),
               });
             }
-          }}>
-          <View style={[{position: 'absolute', zIndex: 20}, iconStyle]}>
+          }}
+          >
+          <View style={[{position: 'absolute', zIndex: 20},iconStyle]}>
             <IconFont name="weizhi" />
           </View>
           <WebView
+              {...viewPanResponder.current.panHandlers}
               ref={mapRef}
               containerStyle={{height: px2dp(200), width: '100%', flex: 0}}
               source={source}
@@ -488,8 +562,7 @@ const styles = MyStyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   table: {
-    width: wp(90),
-    left: 12,
+    width: '100%',
     marginTop: 10,
   },
   head: {
@@ -504,7 +577,7 @@ const styles = MyStyleSheet.create({
   },
   selectUnitStyle: {
     color: '#222',
-    width: 161,
+    width: 170,
     backgroundColor: '#fff',
   },
   valueStyle: {

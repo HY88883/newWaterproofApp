@@ -1,0 +1,14 @@
+com/newwaterproofapp/BuildConfig.java
+ com.newwaterproofapp.BuildConfig
+com/newwaterproofapp/ReactNativeFlipper.java
+ com.newwaterproofapp.ReactNativeFlipper
+ com.newwaterproofapp.ReactNativeFlipper$1
+ com.newwaterproofapp.ReactNativeFlipper$2
+ com.newwaterproofapp.ReactNativeFlipper$2$1
+com/newwaterproofapp/MainApplication.java
+ com.newwaterproofapp.MainApplication
+ com.newwaterproofapp.MainApplication$1
+com/newwaterproofapp/MainActivity.java
+ com.newwaterproofapp.MainActivity
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
