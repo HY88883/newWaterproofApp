@@ -10,6 +10,7 @@ import MyStyleSheet from '@/utils/CustomStyleSheet';
 import Config from 'react-native-config';
 import Touchable from '@/components/Touchable/Touchable';
 import Search from 'react-native-search-box';
+import IconFont from '@/assets/svgs';
 const MemberManagement = props => {
   const {navigation} = props;
   const dispatch = useDispatch();
@@ -36,7 +37,9 @@ const MemberManagement = props => {
           onPress={()=>{
         navigation.navigate('TeammateDetailEdit');
       }}
-      ><Text style={{marginRight:12,color:'#333'}}>加</Text></Touchable>
+      >
+              <IconFont name="tianjia1" style={{marginRight:px2dp(12)}}/>
+      </Touchable>
   });
   
     const getUser = async () => {

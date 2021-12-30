@@ -3,7 +3,7 @@ import { viewportWidth } from '@/utils/';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
 import { customStyles } from '@/utils/styles';
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
@@ -50,13 +50,17 @@ const Login = (props) => {
         contentContainerStyle={{
       alignItems:'center'
     }}
-    >
-            <View style={styles.imgs}/>
+    > 
+     <Image
+         resizeMode={'contain'}
+         source={require('@/assets/images/login.png')}
+         style={styles.imgs}
+        />
             <View style={{marginTop:px2dp(12)}}><Text style={styles.title}>固泽机建</Text></View>
             <Controller
                 control={control}
                 name="username"
-                defaultValue={'hr'}
+                defaultValue={'manager'}
                 rules={{
               required: '请输入手机号码'
             }}
@@ -73,7 +77,7 @@ const Login = (props) => {
            <Controller
                control={control}
                name="password"
-               defaultValue={'hr'}
+               defaultValue={'manager'}
                rules={{
               required: '请输入密码'
             }}
@@ -114,7 +118,6 @@ const styles = MyStyleSheet.create({
       width:145,
       height:171,
       marginTop:105,
-      backgroundColor:'red'
   },
   title:{
     fontSize: 19,

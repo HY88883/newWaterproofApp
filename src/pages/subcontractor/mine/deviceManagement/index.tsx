@@ -8,6 +8,8 @@ import RefreshListView, {RefreshState} from 'react-native-refresh-list-view';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
 import Func from '@/utils/Func';
 import Config from 'react-native-config';
+import moment from 'moment';
+import IconFont from '@/assets/svgs';
 
 const DeviceManagement = props => {
   const {navigation} = props;
@@ -34,7 +36,7 @@ const DeviceManagement = props => {
             <Touchable onPress={() => {
                 navigation.navigate('DeviceAdd');
             }}>
-              <Text style={[{color: '#333'}]}>添加</Text>
+              <IconFont name="tianjia1" style={{marginRight:px2dp(12)}}/>
             </Touchable>
           ),
         });
@@ -44,10 +46,11 @@ const DeviceManagement = props => {
       onHeaderRefresh();
     };
     aRequest();
-    navigation.addListener('focus',()=>{
+   const list= navigation.addListener('focus',()=>{
     aRequest();
     });
     return () => {
+      list&&list();
       dispatch({
         type: 'equipment/setState',
         payload: {
@@ -70,49 +73,92 @@ const DeviceManagement = props => {
 };
   const renderItem = ({item, index}) => {
     return (
-      <Touchable
-          onPress={() => handleViewDetail(item.id)}
+      <View
           style={styles.renderItem}>
-        <View style={styles.status}></View>
-        <Touchable style={styles.statusView} onPress={() =>{
+             <Image
+                 resizeMode={'contain'}
+                 source={require('@/assets/images/luosi.png')}
+                 style={styles.imgsxff}
+        />
+           {/* <Touchable onPress={() =>{
           navigation.navigate('DeviceRollout',{id:item.id});
         }}>
+
+        </Touchable> */}
           <Text style={styles.statusText}>转出</Text>
+        <Touchable  onPress={() =>{
+          navigation.navigate('DeviceRollout',{id:item.id});
+        }} style={{zIndex:10}}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/zhuanchu.png')}
+            style={styles.imgsxffx}
+        />
         </Touchable>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{flexDirection:'row',alignItems: 'center'}}>
+          <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/leftbj.png')}
+              style={styles.imgs}
+        /> 
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/beijin.png')}
+            style={styles.imgsx}
+        />
+          </View>
+          
+
+        {/* <View style={styles.status}></View> */}
+     
+        {/* </Touchable> */}
+        <View style={{flexDirection: 'row', alignItems: 'center',position: 'absolute',left:px2dp(40),top:px2dp(40)}}>
           <View>
             {item.photosAttach.name ? (
               <Image
+                  resizeMode={'cover'}
                   source={{uri: `${Config.FILE_URL}${item.photosAttach.name}`}}
                   style={styles.photoStyle}
               />
-            ) : null}
+            ) : <View style={[styles.photoStyle,{backgroundColor:'#eee'}]} />}
           </View>
-          <View style={{marginLeft:px2dp(12)}}>
-            <View style={{marginBottom: px2dp(10)}}>
+          <View style={{marginLeft:px2dp(70)}}>
+            <View style={{marginBottom: px2dp(10),marginTop: px2dp(-40),marginLeft:px2dp(-30)}}>
               <Text style={styles.biao}>{item.name}</Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={[styles.leftText]}>设备编号：</Text>
-              <Text style={[styles.leftText, {color: '#E6C229'}]}>
+              <Text style={[styles.leftText, {color: '#fff'}]}>
                 {item.code}
               </Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.leftText}>设备分类：</Text>
-              <Text style={[styles.leftText, {color: '#D62828'}]}>
+              <Text style={[styles.leftText, {color: '#fff'}]}>
                 {item.model}
               </Text>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.leftText}>采购日期：</Text>
-              <Text style={[styles.leftText, {color: '#D62828'}]}>
-                {item.purchasingDate}
+              <Text style={[styles.leftText, {color: '#fff'}]}>
+                {moment(item.purchasingDate).format('YYYY年MM月DD日')}
               </Text>
             </View>
+
+         <Touchable style={{position: 'relative'}}
+             onPress={() => handleViewDetail(item.id)}
+        
+         >
+         <Image
+             resizeMode={'contain'}
+             source={require('@/assets/images/btn.png')}
+             style={styles.imgsxxxx}
+        /> 
+        <Text style={styles.cha}>查看详情</Text>
+         </Touchable>
           </View>
         </View>
-      </Touchable>
+      </View>
     );
   };
 
@@ -179,12 +225,12 @@ const styles = MyStyleSheet.create({
   biao: {
     fontSize: 19,
     fontFamily: 'SimHei',
-    color: '#212529',
+    color: '#fff',
   },
   leftText: {
     fontSize: 12,
     fontFamily: 'Adobe Heiti Std',
-    color: '#575757',
+    color: '#fff',
   },
   status: {
     position: 'absolute',
@@ -200,10 +246,15 @@ const styles = MyStyleSheet.create({
     zIndex: -1,
   },
   statusText: {
-    fontSize: 13,
+    position: 'absolute',
+    fontSize: 15,
     fontFamily: 'Adobe Heiti Std',
     color: '#fff',
-    transform: [{rotateZ: '45deg'}],
+    right: '10%',
+    top:'21%',
+    // transform: [{rotateZ: '90deg'}],
+    zIndex: 20,
+    width: 15
   },
   statusView: {
     position: 'absolute',
@@ -211,9 +262,54 @@ const styles = MyStyleSheet.create({
     right: 0,
   },
   photoStyle: {
-    width: 60,
-    height: 60,
+    width: 43,
+    height: 104,
     overflow: 'hidden',
-    borderRadius: 30,
+    borderRadius: 8,
   },
+  imgs:{
+    width:176,
+    height:134 
+  },
+  imgsx:{
+    width:261,
+    height:155,
+    left:-90
+  },
+  imgsxxxx:{
+    width: 90,
+height: 29,
+borderRadius: 15,
+overflow: 'hidden',
+left: 40,
+top:30
+  },
+  cha:{
+fontSize: 15,
+color: '#FFFFFF',
+textAlign: 'center',
+position: 'absolute',
+left:54,
+top:32
+  },
+  imgsxff:{
+    width: 13,
+height: 12,
+position: 'absolute',
+top:'54%',
+left:20,
+zIndex:10
+  },
+  imgsxffx:{
+    width: 24,
+    height: 62,
+    position: 'absolute',
+    top:'5%',
+    right:30,
+    zIndex:10
+  },
+  tianjia1:{
+    width:19,
+    height:19
+  }
 });

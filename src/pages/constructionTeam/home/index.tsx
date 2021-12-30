@@ -1,3 +1,4 @@
+import IconFont from '@/assets/svgs';
 import usePageHeaderTitle from '@/components/hooks/usePageHeaderTitle';
 import Touchable from '@/components/Touchable/Touchable';
 import { getCurrentUser } from '@/config/authority';
@@ -8,7 +9,7 @@ import Func from '@/utils/Func';
 import { customStyles } from '@/utils/styles';
 import { Carousel } from '@ant-design/react-native';
 import  React, { useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, StatusBar, ScrollView, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -102,7 +103,7 @@ else return styles.rShangVeiew;
                 </View>
             </View>
             <View>
-            <Text>xxx</Text>
+            <IconFont name="xiaoxi" size={24} color="#eee"/>
             </View>
             </View>  
     </LinearGradient>
@@ -140,11 +141,31 @@ else return styles.rShangVeiew;
             <View style={styles.itemStyle} key={item.title}>
               <Text style={styles.lei}>{item.title}</Text>
               <View style={styles.bView}>
-                <View/>
+            {
+              _i==0&&  <Image
+                  resizeMode={'contain'}
+                  source={require('@/assets/images/leijigs.png')}
+                  style={styles.icons}
+    />
+            }
+             {
+              _i==1&&  <Image
+                  resizeMode={'contain'}
+                  source={require('@/assets/images/fangzi.png')}
+                  style={styles.icons}
+    />
+            }
+              {
+              _i==2&&  <Image
+                  resizeMode={'contain'}
+                  source={require('@/assets/images/gongdi.png')}
+                  style={styles.icons}
+    />
+            }
                 <Touchable style={showStyle(item.title)} onPress={()=>{
                   if(item.title==='添加上工'&&showInfo(item.title)==='上工'){
                         navigation.navigate('BeginWorkingForm',{getConstructionSummary});
-                  }else{
+                  }else  if(item.title==='添加上工'&&showInfo(item.title)==='下工'){
                     navigation.navigate('CancleWork',{workRecordId:ConstructionSummary.workRecordId,
                       getConstructionSummary
                     });
@@ -296,8 +317,8 @@ color: '#FFEC51'
     height:36,
     borderRadius:18,
     overflow:'hidden',
-    backgroundColor:'blue',
-    marginBottom:8
+    marginBottom:8,
+    backgroundColor:'blue'
   },
   ben:{
     flexDirection:'row',
@@ -320,6 +341,8 @@ color: '#495057'
   },
   bView:{
     marginTop:8,
+    flexDirection:'row',
+    alignItems:'center'
   },
   rVeiew:{
     width: 54,
@@ -336,7 +359,7 @@ borderRadius: 8,
 overflow: 'hidden'
   },
   rShangVeiew:{
-    width: 64,
+    width: 54,
 height: 29,
 backgroundColor: '#246DDE',
 borderRadius: 16,
@@ -425,5 +448,10 @@ color: '#3E3E3E'
     fontSize: 13,
 fontFamily: 'Adobe Heiti Std',
 color: '#212529'
+  },
+  icons:{
+    width:28,
+    height:28,
+    marginRight:4
   }
 });

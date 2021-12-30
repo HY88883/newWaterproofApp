@@ -61,7 +61,6 @@ const BeginWorkingForm = props => {
     projectManage: state.projectManage,
     team: state.team,
   }));
-  console.log('logg======', pList);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -232,7 +231,6 @@ const BeginWorkingForm = props => {
   };
 
   const handlePhoto = async () => {
-    console.log('fwef====');
 
     ImagePicker.launchCamera(
       {
@@ -475,7 +473,7 @@ const styles = MyStyleSheet.create({
     height: 86,
     borderRadius: 4,
     overflow: 'hidden',
-    backgroundColor: 'red',
+    backgroundColor: '#eee',
     margin: 4,
   },
   imageStyle: {

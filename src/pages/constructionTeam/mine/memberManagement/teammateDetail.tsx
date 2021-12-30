@@ -18,6 +18,7 @@ const RNFS = require('react-native-fs');
 import * as DocumentOpener from 'react-native-document-opener';
 import {Toast} from '@ant-design/react-native';
 import Overlay from '@/components/OverlayLoading';
+import IconFont from '@/assets/svgs';
 
 const TeammateDetail = props => {
   const {
@@ -44,7 +45,7 @@ const TeammateDetail = props => {
               id: userId
             });
           }}>
-          <Text style={{color: '#333'}}>编辑</Text>
+          <IconFont name={'piliangbianji'} style={{marginRight:px2dp(12)}}/>
         </Touchable>
       ),
     });
@@ -159,8 +160,13 @@ const TeammateDetail = props => {
           backgroundColor: '#fff',
           padding: px2dp(14),
         }}>
-        <View>
+        <View style={{flexDirection:'row', alignItems: 'center',marginBottom:px2dp(4)}}>
           <Text style={styles.ji}>基本信息</Text>
+          <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/jbxx.png')}
+              style={styles.icons}
+    />
         </View>
 
         <View style={[styles.kua, {marginBottom: px2dp(5)}]}>
@@ -205,8 +211,13 @@ const TeammateDetail = props => {
           backgroundColor: '#fff',
           padding: px2dp(14),
         }}>
-        <View>
+        <View style={{flexDirection:'row', alignItems: 'center',marginBottom:px2dp(4)}}>
           <Text style={styles.ji}>身份证信息</Text>
+          <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/sfzxx.png')}
+              style={styles.icons}
+    />
         </View>
 
         <View style={[styles.kua, {marginBottom: px2dp(5)}]}>
@@ -239,8 +250,13 @@ const TeammateDetail = props => {
           backgroundColor: '#fff',
           padding: px2dp(14),
         }}>
-        <View>
+        <View style={{flexDirection:'row', alignItems: 'center',marginBottom:px2dp(4)}}>
           <Text style={styles.ji}>银行卡信息</Text>
+          <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/yykxx.png')}
+              style={styles.icons}
+    />
         </View>
 
         <View style={[styles.kua, {marginBottom: px2dp(5)}]}>
@@ -355,4 +371,9 @@ const styles = MyStyleSheet.create({
     color: '#00A6FB',
     textDecorationLine: 'underline',
   },
+  icons:{
+    width:15,
+    height:15,
+    marginLeft:px2dp(4)
+  }
 });

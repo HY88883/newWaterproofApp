@@ -6,6 +6,7 @@ import { useNavigationState } from '@react-navigation/native';
 import Classroom from '@/pages/constructionTeam/classroom';
 import Mine from '@/pages/subcontractor/mine';
 import Home from '@/pages/subcontractor/home';
+import IconFont from '@/assets/svgs';
 
 const Tab = createBottomTabNavigator();
 
@@ -62,9 +63,9 @@ const onBackAndroid = () => {
               options={{
             tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>主页</Text>,
 
-            // tabBarIcon: ({color, size}) => (
-            //   // <IconFont name="zhuye" color={color} size={size} />
-            // ),
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="xiazai44" color={color} size={size} />
+            ),
           }}
         />
           <Tab.Screen
@@ -72,9 +73,9 @@ const onBackAndroid = () => {
               component={Classroom}
               options={{
                   tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>施工课堂</Text>,
-                  // tabBarIcon: ({color, size}) => (
-                  //     // <IconFont name="ketang" color={color} size={size} />
-                  // ),
+                  tabBarIcon: ({color, size}) => (
+                      <IconFont name="ketang" color={color} size={size} />
+                  ),
               }}
           />
       
@@ -84,9 +85,9 @@ const onBackAndroid = () => {
               component={Mine}
               options={{
                   tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>我的</Text>,
-                  // tabBarIcon: ({color, size}) => (
-                  //     // <IconFont name="iconfontwo" color={color} size={size} />
-                  // ),
+                  tabBarIcon: ({color, size}) => (
+                      <IconFont name="tianchongxing-" color={color} size={size} />
+                  ),
               }}
           />
 

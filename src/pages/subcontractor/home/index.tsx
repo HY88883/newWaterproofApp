@@ -1,3 +1,4 @@
+import IconFont from '@/assets/svgs';
 import usePageHeaderTitle from '@/components/hooks/usePageHeaderTitle';
 import Touchable from '@/components/Touchable/Touchable';
 import {getCurrentUser} from '@/config/authority';
@@ -7,7 +8,7 @@ import Func from '@/utils/Func';
 import {customStyles} from '@/utils/styles';
 import {Carousel} from '@ant-design/react-native';
 import React, {useEffect, useRef} from 'react';
-import {Text, View, StyleSheet, StatusBar, ScrollView} from 'react-native';
+import {Text, View, StyleSheet, StatusBar, ScrollView, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -93,7 +94,7 @@ const Home = props => {
             </View>
           </View>
           <View>
-            <Text>xxx</Text>
+          <IconFont name="xiaoxi" size={24} color="#eee"/>
           </View>
         </View>
       </LinearGradient>
@@ -123,7 +124,21 @@ const Home = props => {
                 onPress={() => handleOnPress(_i)}
                 key={item.title}
                 style={{alignItems: 'center'}}>
-              <View style={styles.imgs}></View>
+                {_i==0&&  <Image
+                    resizeMode={'contain'}
+                    source={require('@/assets/images/sq.png')}
+                    style={styles.imgs}
+        />}
+           {_i==1&&  <Image
+               resizeMode={'contain'}
+               source={require('@/assets/images/baoxiao.png')}
+               style={[styles.imgs,{backgroundColor:'blue'}]}
+        />}
+          {_i==2&&  <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/jilv.png')}
+              style={[styles.imgs,{backgroundColor:'skyblue'}]}
+        />}
               <Text style={styles.textStyle}>{item.title}</Text>
             </Touchable>
           ))}
@@ -283,8 +298,8 @@ const styles = StyleSheet.create({
     height: 36,
     borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: 'blue',
     marginBottom: 8,
+    backgroundColor:'orange'
   },
   ben: {
     flexDirection: 'row',

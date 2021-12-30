@@ -254,7 +254,7 @@ async function onFinish(values){
                     style={styles.imageStyle}
                 />
               ) : (
-                <View style={styles.imageStyle} />
+                <View style={[styles.imageStyle,{backgroundColor:'#eee'}]} />
               )}
             </Touchable>
           }

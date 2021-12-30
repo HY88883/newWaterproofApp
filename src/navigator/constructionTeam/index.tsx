@@ -7,6 +7,7 @@ import Mine from '@/pages/constructionTeam/mine';
 import Classroom from '@/pages/constructionTeam/classroom';
 import Home from '@/pages/constructionTeam/home';
 import TeamMine from '@/pages/constructionTeam/mine';
+import IconFont from '@/assets/svgs';
 
 const Tab = createBottomTabNavigator();
 
@@ -84,9 +85,9 @@ const onBackAndroid = () => {
               options={{
             tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>主页</Text>,
 
-            // tabBarIcon: ({color, size}) => (
-            //   // <IconFont name="zhuye" color={color} size={size} />
-            // ),
+            tabBarIcon: ({color, size}) => (
+              <IconFont name="xiazai44" color={color} size={size} />
+            ),
           }}
         />
           <Tab.Screen
@@ -94,9 +95,9 @@ const onBackAndroid = () => {
               component={Classroom}
               options={{
                   tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>施工课堂</Text>,
-                  // tabBarIcon: ({color, size}) => (
-                  //     // <IconFont name="ketang" color={color} size={size} />
-                  // ),
+                  tabBarIcon: ({color, size}) => (
+                    <IconFont name="ketang" color={color} size={size} />
+                ),
               }}
           />
       
@@ -106,9 +107,9 @@ const onBackAndroid = () => {
               component={TeamMine}
               options={{
                   tabBarLabel: (params)=><Text style={[customStyles.text,{color:params.color}]}>我的</Text>,
-                  // tabBarIcon: ({color, size}) => (
-                  //     // <IconFont name="iconfontwo" color={color} size={size} />
-                  // ),
+                  tabBarIcon: ({color, size}) => (
+                    <IconFont name="tianchongxing-" color={color} size={size} />
+                ),
               }}
           />
 

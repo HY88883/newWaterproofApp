@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
 import Func from '@/utils/Func';
+import IconFont from '@/assets/svgs';
 
 const ProjectManagement = (props) => {
     const {navigation}=props;
@@ -26,10 +27,10 @@ const ProjectManagement = (props) => {
                     onPress={()=>{
                       navigation.navigate('AddProject');
                     }}
+                    style={{marginRight:px2dp(12)}}
                 >
-                    <View style={{flexDirection:'row',alignItems: 'center'}}>
-                        <Text style={{color:'#333'}}>添加</Text>
-                    </View></Touchable>
+                   <IconFont name="tianjia1"/>
+                    </Touchable>
         });
     };
 

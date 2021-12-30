@@ -42,7 +42,14 @@ const ConstructionLog = props => {
   return (
     <View style={styles.container}>
       <View>
+        <View style={{flexDirection:'row',alignItems: 'center'}}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/cg.png')}
+            style={styles.imags}
+        /> 
         <Text style={styles.title}>成果照片</Text>
+        </View>
         <View style={styles.photoContainer}>
           {constructionRecordDetail.resultPhotoAttachList.map((i, index) => (
             <Touchable onPress={() => handViewPhoto(index)} key={i.id} style={{width:'30%'}}>
@@ -63,7 +70,12 @@ const ConstructionLog = props => {
       />
 
       <View>
-          <View style={{marginVertical:px2dp(12),}}>
+          <View style={{marginVertical:px2dp(12),flexDirection:'row',alignItems:'center'}}>
+          <Image
+              resizeMode={'contain'}
+              source={require('@/assets/images/rizhi.png')}
+              style={styles.imags}
+        /> 
         <Text style={styles.title}>施工日志</Text>
           </View>
         <View>
@@ -153,6 +165,7 @@ const styles = MyStyleSheet.create({
     fontSize: 18,
     fontFamily: 'SimHei',
     color: '#212529',
+    paddingLeft:4
   },
   leftText: {
     fontSize: 19,
@@ -164,4 +177,8 @@ const styles = MyStyleSheet.create({
     fontFamily: 'SimHei',
     color: '#FF9F1C',
   },
+  imags:{
+    width:21,
+    height:18
+  }
 });

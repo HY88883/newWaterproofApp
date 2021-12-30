@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {Text, View, StyleSheet, Platform} from 'react-native';
+import {Text, View, StyleSheet, Platform, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import RefreshListView, {RefreshState} from 'react-native-refresh-list-view';
 import MyStyleSheet from '@/utils/CustomStyleSheet';
 import {px2dp} from '@/utils/';
 import Touchable from '@/components/Touchable/Touchable';
 import {viewportWidth} from '@/utils/';
+import Config from 'react-native-config';
 
 const ConstructionTeamManagement = props => {
   const {navigation} = props;
@@ -45,15 +46,25 @@ const ConstructionTeamManagement = props => {
   };
 
   const renderItem = ({item, index}) => {
+    console.log('item=======',item);
+    
     return (
       <>
-        <View>
-          <Text style={styles.titlexx}>{item.deptName}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center',marginLeft:px2dp(12),marginBottom:px2dp(6)}}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/qizhi.png')}
+            style={styles.imgs}
+        />
+          <Text style={[styles.titlexx,{paddingLeft:px2dp(4)}]}>{item.deptName}</Text>
         </View>
         <Touchable
             onPress={() => handleViewDetail(item.id)}
             style={styles.renderItem}>
-          <View style={styles.images}></View>
+        <Image
+            source={{uri: `${Config.FILE_URL}${item.principalUserId}`}}
+            style={styles.images}
+              />
           <View style={{
     marginLeft: px2dp(8)
           }}>
@@ -176,11 +187,15 @@ const styles = MyStyleSheet.create({
     height: 60,
     borderRadius: 30,
     overflow: 'hidden',
-    backgroundColor: 'red',
+    backgroundColor: '#eee',
   },
   titlexx:{
     fontSize: 19,
     fontFamily: 'SimHei',
     color: '#212529'
+  },
+  imgs:{
+    width:19,
+    height:19
   }
 });

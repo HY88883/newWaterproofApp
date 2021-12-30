@@ -172,6 +172,7 @@ const styles = MyStyleSheet.create({
     borderRadius: 22.5,
     overflow: 'hidden',
     marginRight: 10,
+    backgroundColor:'#eee'
   },
   Itemtext: {
     fontSize: 18,

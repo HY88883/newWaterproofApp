@@ -12,7 +12,7 @@ import { customStyles } from '@/utils/styles';
 import { Toast } from '@ant-design/react-native';
 import React from 'react';
 import {
-  Button, PanResponder, Platform, ScrollView, StyleSheet, Text,
+  Button, Image, PanResponder, Platform, ScrollView, StyleSheet, Text,
   View
 } from 'react-native';
 import { Row, Rows, Table } from 'react-native-table-component';
@@ -61,8 +61,8 @@ class ProjectDetail extends React.Component<any> {
     this.props.navigation.setOptions({
       headerRight: () =>
         Func.ifubcontractor ? (
-          <Touchable onPress={this.handleEdit}>
-            <Text style={customStyles.headerRightText}>编辑</Text>
+          <Touchable onPress={this.handleEdit} style={{marginRight:px2dp(12)}}>
+            <IconFont name="piliangbianji"/>
           </Touchable>
         ) : (
           <Touchable onPress={this.handleTouch}>
@@ -135,6 +135,11 @@ class ProjectDetail extends React.Component<any> {
     return (
       <View key={index}>
         <View style={[styles.itemStyle, {alignItems: 'flex-start'}]}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/arrow.png')}
+            style={styles.imgarrow}
+        />
           <Text style={customStyles.detailLeftText}>{item.name}：</Text>
           <Text style={[customStyles.detailRightText, {width: '68%'}]}>{item.field}</Text>
         </View>
@@ -283,6 +288,11 @@ class ProjectDetail extends React.Component<any> {
     latitude = Number(latitude);
     return (
       <ScrollView style={styles.container}>
+            <Image
+                resizeMode={'contain'}
+                source={require('@/assets/images/titlebj.png')}
+                style={styles.imgsxff}
+        />
         <Text style={styles.jiben}>施工项目基本信息</Text>
         <View style={[styles.detailView,styles.infoViews]}>
           {projectDetail.map(this.handleMap)}
@@ -401,11 +411,11 @@ const styles = MyStyleSheet.create({
     paddingVertical:2
   },
   jiben: {
-    paddingLeft: 12,
     fontSize: 17,
     fontWeight: '600',
-    paddingVertical: 8,
-    color:'#333'
+    color:'#333',
+    position: 'absolute',
+    top:12,left:34,
   },
   mapStyle: {
     height: wp(80),
@@ -489,6 +499,17 @@ const styles = MyStyleSheet.create({
           shadowOffset: { width:1, height: 5 }
       }
   })
+  },
+  imgsxff:{
+    width:205,
+    height:32,
+    marginVertical:8
+  },
+  imgarrow:{
+    width:14,
+    height:14,
+    top:4,
+    marginRight:8
   }
 });
 

@@ -1,4 +1,5 @@
 import DataTable from '@/components/dataTable';
+import { px2dp } from '@/utils/';
 import React, {useEffect, useMemo} from 'react';
 import {Text, View, StyleSheet, ScrollView, Image} from 'react-native';
 import Config from 'react-native-config';
@@ -28,7 +29,6 @@ const TeamManagementDetail = props => {
     equipment: state.equipment,
     materialStock:state.materialStock
   }));
-console.log('fwe========',ConstructionTeamDetail);
 
   useEffect(() => {
     sendRequest();
@@ -86,8 +86,13 @@ const equeList=useMemo(()=>{
   return (
     <ScrollView style={styles.container}>
         <View style={styles.headerw}> 
-            <View>
-                <Text style={styles.ji}>基本信息</Text>
+            <View style={{flexDirection:'row',alignItems: 'center'}}>
+            <Image
+                resizeMode={'contain'}
+                source={require('@/assets/images/jibenx.png')}
+                style={styles.icons}
+    />
+                <Text style={[styles.ji,{paddingLeft:px2dp(4)}]}>基本信息</Text>
             </View>
             <View style={styles.xxx}>
                 <View style={styles.imges}/>
@@ -106,8 +111,14 @@ const equeList=useMemo(()=>{
                 </View>
             </View>
         </View>
-        <View>
-                <Text style={styles.ji}>队员信息</Text>
+
+        <View style={{flexDirection:'row',alignItems: 'center',marginLeft:px2dp(12),marginVertical:px2dp(12)}}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/duiyuan.png')}
+            style={styles.icons}
+    />
+                <Text style={[styles.ji,{paddingLeft:px2dp(4)}]}>队员信息</Text>
             </View>
       <DataTable
           leftKey="userName" 
@@ -127,8 +138,13 @@ const equeList=useMemo(()=>{
           console.log(item, row, column);
         }}
       />
-        <View>
-                <Text style={styles.ji}>设备信息</Text>
+        <View style={{flexDirection:'row',alignItems: 'center',marginLeft:px2dp(12),marginVertical:px2dp(12)}}>
+        <Image
+            resizeMode={'contain'}
+            source={require('@/assets/images/shebei.png')}
+            style={styles.icons}
+    />
+                <Text style={[styles.ji,{paddingLeft:px2dp(4)}]}>设备信息</Text>
             </View>
       <DataTable
           leftKey="name" 
@@ -147,8 +163,13 @@ const equeList=useMemo(()=>{
         }}
         //    customRowStyles={{header:'#39BAB5',jRow:'#68D8D6',oRow:'#BDECEF'}}
       />
-         <View>
-                <Text style={styles.ji}>材料库存信息</Text>
+         <View style={{flexDirection:'row',alignItems: 'center',marginLeft:px2dp(12),marginVertical:px2dp(12)}}>
+         <Image
+             resizeMode={'contain'}
+             source={require('@/assets/images/shebei.png')}
+             style={styles.icons}
+    />
+                <Text style={[styles.ji,{paddingLeft:px2dp(4)}]}>材料库存信息</Text>
             </View>
        <DataTable
            leftKey="name" 
@@ -207,6 +228,10 @@ backgroundColor: 'red'
   headerw:{
     backgroundColor:'#fff',
     padding:15
+  },
+  icons:{
+    width:16,
+    height:17
   }
     
   

@@ -257,14 +257,19 @@ const viewPanResponder = useRef(PanResponder.create({
   };
 
   const _onLoad = syntheticEvent => {
-     setTimeout(() =>{
-      const position=location?.addressComponent.streetNumber.location;
-      if(position){
-        const [a,b]=position.split(',');
-        const obj={a,b};
-        mapRef.current.injectJavaScript(`listenMapPan(${JSON.stringify(obj)});true;`);
-      }
-     },1000);
+    if(props.route.params){
+      setTimeout(() =>{
+        const position=location?.addressComponent.streetNumber.location;
+        if(position){
+          const [a,b]=position.split(',');
+          const obj={a,b};
+          mapRef.current.injectJavaScript(`listenMapPan(${JSON.stringify(obj)});true;`);
+        }
+       },1000);
+    }else{
+      mapRef.current.injectJavaScript('getCurrentPosition();true;');
+    }
+   
   };
 
   let source;
